@@ -88,12 +88,13 @@ const getAllBooksHandler = (req, h) => {
             book.name.toLowerCase().includes(name.toLowerCase())
         );
     }
-    console.log(books);
 
-    filteredBooks = filteredBooks.map((book) => {
-        const { id, name, publisher } = book;
-        return { id, name, publisher };
-    });
+    filteredBooks = filteredBooks.map((book) => ({
+        id: book.id,
+        name: book.name,
+        publisher: book.publisher,
+    }));
+
     const res = h.response({
         status: "success",
         data: {
